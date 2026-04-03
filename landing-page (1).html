@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Créatif — Votre Vision, Notre Art</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --coral: #FF5A3C;
+    --yellow: #FFD43B;
+    --teal: #1ECFC4;
+    --navy: #0C1B33;
+    --cream: #FFF8F0;
+    --pink: #FF82AC;
+    --lime: #B4E33B;
+    --purple: #7C4DFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(255,248,240,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--navy);
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.4rem;
+    letter-spacing: -0.03em;
+  }
+  .logo span { color: var(--coral); }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav a {
+    text-decoration: none; color: var(--navy);
+    font-weight: 500; font-size: 0.9rem;
+    letter-spacing: 0.02em; transition: color 0.2s;
+  }
+  nav a:hover { color: var(--coral); }
+  .nav-cta {
+    background: var(--navy); color: var(--cream) !important;
+    padding: 0.55rem 1.3rem;
+    border-radius: 100px;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--coral) !important; transform: translateY(-2px); color: white !important; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    padding: 8rem 3rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.18;
+    pointer-events: none;
+  }
+  .shape-1 { width: 500px; height: 500px; background: var(--teal); top: -100px; right: -100px; }
+  .shape-2 { width: 300px; height: 300px; background: var(--coral); bottom: 50px; left: -80px; }
+  .shape-3 { width: 200px; height: 200px; background: var(--yellow); top: 200px; right: 35%; }
+
+  .hero-left { position: relative; z-index: 2; }
+  .hero-tag {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--navy);
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.4rem 1rem; border-radius: 100px;
+    border: 2px solid var(--navy);
+    margin-bottom: 1.5rem;
+    animation: slideUp 0.7s ease both;
+  }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 5.5vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+    animation: slideUp 0.7s 0.1s ease both;
+  }
+  h1 .accent { color: var(--coral); display: inline-block; position: relative; }
+  h1 .accent::after {
+    content: '';
+    position: absolute; bottom: 4px; left: 0; right: 0;
+    height: 5px; background: var(--yellow);
+    border-radius: 3px; z-index: -1;
+    transform: skewX(-3deg);
+  }
+  .hero-sub {
+    font-size: 1.1rem; line-height: 1.7;
+    color: #445;
+    max-width: 440px; margin-bottom: 2.5rem;
+    animation: slideUp 0.7s 0.2s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: slideUp 0.7s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--coral); color: white;
+    padding: 0.85rem 2rem; border-radius: 100px;
+    font-size: 1rem; font-weight: 600;
+    text-decoration: none; border: 2px solid var(--coral);
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--navy); border-color: var(--navy); transform: translateY(-3px); }
+  .btn-secondary {
+    background: transparent; color: var(--navy);
+    padding: 0.85rem 2rem; border-radius: 100px;
+    font-size: 1rem; font-weight: 600;
+    text-decoration: none; border: 2px solid var(--navy);
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-secondary:hover { background: var(--navy); color: var(--cream); transform: translateY(-3px); }
+
+  .hero-right {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    animation: slideUp 0.7s 0.25s ease both;
+  }
+  .hero-card {
+    border-radius: 20px;
+    border: 2px solid var(--navy);
+    padding: 1.5rem;
+    display: flex; flex-direction: column; gap: 0.5rem;
+    transition: transform 0.3s;
+  }
+  .hero-card:hover { transform: translateY(-6px) rotate(-1deg); }
+  .hero-card:nth-child(1) { background: var(--teal); }
+  .hero-card:nth-child(2) { background: var(--yellow); margin-top: 2rem; }
+  .hero-card:nth-child(3) { background: var(--pink); }
+  .hero-card:nth-child(4) { background: var(--lime); margin-top: -2rem; }
+  .hero-card-icon { font-size: 2rem; }
+  .hero-card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; }
+  .hero-card-desc { font-size: 0.82rem; line-height: 1.5; opacity: 0.85; }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    border-top: 2px solid var(--navy); border-bottom: 2px solid var(--navy);
+    background: var(--coral); padding: 0.8rem 0;
+    overflow: hidden;
+  }
+  .marquee-track {
+    display: flex; gap: 3rem;
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-item {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 1.1rem;
+    color: white; letter-spacing: 0.05em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .marquee-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--yellow);
+    display: inline-block;
+  }
+
+  /* SERVICES */
+  #services { padding: 6rem 3rem; }
+  .section-label {
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--coral); margin-bottom: 1rem;
+  }
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800; line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 3.5rem;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .service-card {
+    border: 2px solid var(--navy);
+    border-radius: 20px; padding: 2rem;
+    transition: all 0.3s; position: relative;
+    overflow: hidden; background: white;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; bottom: -60px; right: -60px;
+    width: 120px; height: 120px;
+    border-radius: 50%; opacity: 0.15;
+    transition: all 0.4s;
+  }
+  .service-card:nth-child(1)::before { background: var(--teal); }
+  .service-card:nth-child(2)::before { background: var(--coral); }
+  .service-card:nth-child(3)::before { background: var(--yellow); }
+  .service-card:nth-child(4)::before { background: var(--pink); }
+  .service-card:nth-child(5)::before { background: var(--lime); }
+  .service-card:nth-child(6)::before { background: var(--purple); }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 6px 6px 0 var(--navy); }
+  .service-card:hover::before { opacity: 0.35; transform: scale(2); }
+  .service-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem; font-weight: 700;
+    color: var(--coral); margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+  }
+  .service-icon {
+    width: 48px; height: 48px; border-radius: 14px;
+    border: 2px solid var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1.2rem;
+  }
+  .service-card:nth-child(1) .service-icon { background: var(--teal); }
+  .service-card:nth-child(2) .service-icon { background: var(--coral); }
+  .service-card:nth-child(3) .service-icon { background: var(--yellow); }
+  .service-card:nth-child(4) .service-icon { background: var(--pink); }
+  .service-card:nth-child(5) .service-icon { background: var(--lime); }
+  .service-card:nth-child(6) .service-icon { background: #c4b5ff; }
+  .service-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; margin-bottom: 0.6rem; }
+  .service-desc { font-size: 0.9rem; line-height: 1.65; color: #556; }
+
+  /* STATS */
+  #stats {
+    padding: 5rem 3rem;
+    background: var(--navy);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2rem; text-align: center;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 3.5rem;
+    color: var(--yellow); line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .stat-label { color: rgba(255,255,255,0.65); font-size: 0.9rem; }
+
+  /* PORTFOLIO */
+  #portfolio { padding: 6rem 3rem; }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1.2rem;
+  }
+  .portfolio-item {
+    border-radius: 20px; border: 2px solid var(--navy);
+    overflow: hidden; position: relative;
+    min-height: 220px;
+    display: flex; align-items: flex-end;
+    cursor: pointer; transition: transform 0.3s;
+  }
+  .portfolio-item:hover { transform: scale(1.02); }
+  .portfolio-item:nth-child(1) { background: linear-gradient(135deg, var(--teal), #0fa89e); grid-row: span 2; }
+  .portfolio-item:nth-child(2) { background: linear-gradient(135deg, var(--coral), #e63d20); }
+  .portfolio-item:nth-child(3) { background: linear-gradient(135deg, var(--yellow), #e8b800); }
+  .portfolio-item:nth-child(4) { background: linear-gradient(135deg, var(--pink), #e05480); }
+  .portfolio-item:nth-child(5) { background: linear-gradient(135deg, var(--lime), #8ec41e); }
+  .portfolio-label {
+    background: rgba(12,27,51,0.8); color: white;
+    padding: 1rem 1.2rem; width: 100%; backdrop-filter: blur(8px);
+  }
+  .portfolio-label strong { font-family: 'Syne', sans-serif; font-weight: 700; display: block; }
+  .portfolio-label span { font-size: 0.8rem; opacity: 0.7; }
+
+  /* TESTIMONIALS */
+  #testimonials { padding: 6rem 3rem; background: var(--navy); }
+  #testimonials .section-label { color: var(--yellow); }
+  #testimonials h2 { color: white; }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .testimonial-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px; padding: 2rem;
+    transition: all 0.3s;
+  }
+  .testimonial-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-4px); }
+  .stars { color: var(--yellow); font-size: 1.1rem; margin-bottom: 1rem; }
+  .testimonial-text {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.95rem; line-height: 1.7;
+    font-style: italic; margin-bottom: 1.5rem;
+  }
+  .testimonial-author { display: flex; align-items: center; gap: 0.8rem; }
+  .author-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.85rem;
+    font-family: 'Syne', sans-serif; border: 2px solid rgba(255,255,255,0.2);
+  }
+  .author-name { font-weight: 600; font-size: 0.9rem; color: white; }
+  .author-role { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+
+  /* CONTACT / CTA */
+  #contact {
+    padding: 6rem 3rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .contact-left h2 { margin-bottom: 1rem; }
+  .contact-left p { color: #556; font-size: 1rem; line-height: 1.7; max-width: 380px; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  label { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.03em; color: #334; }
+  input, textarea {
+    border: 2px solid var(--navy); border-radius: 12px;
+    padding: 0.8rem 1rem; font-family: inherit;
+    font-size: 0.95rem; background: white;
+    transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+  }
+  input:focus, textarea:focus { border-color: var(--coral); box-shadow: 0 0 0 3px rgba(255,90,60,0.12); }
+  textarea { resize: vertical; min-height: 120px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .btn-submit {
+    background: var(--coral); color: white;
+    padding: 0.9rem 2rem; border-radius: 100px;
+    font-size: 1rem; font-weight: 600;
+    border: 2px solid var(--coral); cursor: pointer;
+    font-family: inherit; transition: all 0.2s; align-self: flex-start;
+  }
+  .btn-submit:hover { background: var(--navy); border-color: var(--navy); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy); color: rgba(255,255,255,0.6);
+    padding: 2rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 2px solid rgba(255,255,255,0.08);
+  }
+  footer .logo { color: white; }
+  footer p { font-size: 0.85rem; }
+  footer .footer-links { display: flex; gap: 2rem; }
+  footer a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  footer a:hover { color: var(--yellow); }
+
+  /* ANIMATIONS */
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .hero-card:nth-child(1) { animation: float 4s 0s ease-in-out infinite; }
+  .hero-card:nth-child(2) { animation: float 4s 0.5s ease-in-out infinite; }
+  .hero-card:nth-child(3) { animation: float 4s 1s ease-in-out infinite; }
+  .hero-card:nth-child(4) { animation: float 4s 1.5s ease-in-out infinite; }
+
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
+    .hero-right { grid-template-columns: repeat(4, 1fr); }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    #stats { grid-template-columns: repeat(2, 1fr); padding: 3rem 1.5rem; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .portfolio-item:nth-child(1) { grid-row: span 1; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    #contact { grid-template-columns: 1fr; padding: 4rem 1.5rem; }
+    #services, #portfolio { padding: 4rem 1.5rem; }
+    #testimonials { padding: 4rem 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">kre<span>8</span>if</div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#testimonials">Témoignages</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-shape shape-1"></div>
+  <div class="hero-bg-shape shape-2"></div>
+  <div class="hero-bg-shape shape-3"></div>
+  <div class="hero-left">
+    <span class="hero-tag">✦ Studio Créatif — Paris</span>
+    <h1>On donne<br>vie à vos<br><span class="accent">idées folles</span></h1>
+    <p class="hero-sub">Design audacieux, branding inoubliable et expériences digitales qui font tourner les têtes. On ne fait pas dans le tiède.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Démarrons un projet →</a>
+      <a href="#portfolio" class="btn-secondary">Voir nos réalisations</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hero-card-icon">🎨</div>
+      <div class="hero-card-title">Branding</div>
+      <div class="hero-card-desc">Identités visuelles qui marquent les esprits</div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-icon">✦</div>
+      <div class="hero-card-title">Web Design</div>
+      <div class="hero-card-desc">Sites qui convertissent et époustouflent</div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-icon">📱</div>
+      <div class="hero-card-title">Motion</div>
+      <div class="hero-card-desc">Animations et vidéos qui captivent</div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-icon">🚀</div>
+      <div class="hero-card-title">Strategy</div>
+      <div class="hero-card-desc">Vision créative au service de la croissance</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Design <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Branding <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Motion <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Web Design <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Identité Visuelle <span class="marquee-dot"></span></span>
+    <span class="marquee-item">UX / UI <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Créativité <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Design <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Branding <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Motion <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Web Design <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Identité Visuelle <span class="marquee-dot"></span></span>
+    <span class="marquee-item">UX / UI <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Créativité <span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label fade-in">Ce qu'on fait</div>
+  <h2 class="fade-in">Des services qui font<br>la différence</h2>
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <div class="service-num">01</div>
+      <div class="service-icon">🎨</div>
+      <div class="service-title">Identité de Marque</div>
+      <p class="service-desc">Logo, palette, typographie, guidelines — on forge une identité cohérente qui vous ressemble et qui dure.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-num">02</div>
+      <div class="service-icon">💻</div>
+      <div class="service-title">Web Design & Dev</div>
+      <p class="service-desc">Sites vitrine, landing pages et e-commerce pensés pour convertir, avec une UX irréprochable.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-num">03</div>
+      <div class="service-icon">🎬</div>
+      <div class="service-title">Motion Design</div>
+      <p class="service-desc">Animations, vidéos explicatives, reels — on donne du mouvement à vos idées pour captiver votre audience.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-num">04</div>
+      <div class="service-icon">📸</div>
+      <div class="service-title">Direction Artistique</div>
+      <p class="service-desc">Shootings photo, univers visuels, cohérence éditoriale — on orchestre chaque pixel avec intention.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-num">05</div>
+      <div class="service-icon">📱</div>
+      <div class="service-title">Social Media Design</div>
+      <p class="service-desc">Templates, campagnes, visuels engageants — votre feed devient une véritable galerie d'art.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-num">06</div>
+      <div class="service-icon">🧠</div>
+      <div class="service-title">Stratégie Créative</div>
+      <p class="service-desc">Positionnement, storytelling, concept de campagne — on pense avant de créer pour un impact maximal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="fade-in">
+    <div class="stat-num">120+</div>
+    <div class="stat-label">Projets livrés</div>
+  </div>
+  <div class="fade-in">
+    <div class="stat-num">98%</div>
+    <div class="stat-label">Clients satisfaits</div>
+  </div>
+  <div class="fade-in">
+    <div class="stat-num">7</div>
+    <div class="stat-label">Ans d'expérience</div>
+  </div>
+  <div class="fade-in">
+    <div class="stat-num">15+</div>
+    <div class="stat-label">Prix & distinctions</div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-label fade-in">Nos réalisations</div>
+  <h2 class="fade-in">Ce dont on est<br>vraiment fiers</h2>
+  <div class="portfolio-grid">
+    <div class="portfolio-item fade-in">
+      <div class="portfolio-label">
+        <strong>Maison Lumière</strong>
+        <span>Branding & Identité visuelle</span>
+      </div>
+    </div>
+    <div class="portfolio-item fade-in">
+      <div class="portfolio-label">
+        <strong>Bloom Studio</strong>
+        <span>Web Design</span>
+      </div>
+    </div>
+    <div class="portfolio-item fade-in">
+      <div class="portfolio-label">
+        <strong>Vivo</strong>
+        <span>Motion Design</span>
+      </div>
+    </div>
+    <div class="portfolio-item fade-in">
+      <div class="portfolio-label">
+        <strong>Terra Foods</strong>
+        <span>Packaging & DA</span>
+      </div>
+    </div>
+    <div class="portfolio-item fade-in">
+      <div class="portfolio-label">
+        <strong>Echo App</strong>
+        <span>UI/UX Design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-label fade-in">Ce qu'ils disent</div>
+  <h2 class="fade-in">Nos clients en parlent<br>mieux que nous</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-in">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">« kre8if a transformé notre image de marque. En 6 semaines, notre taux d'engagement a doublé. Une équipe qui ose vraiment. »</p>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background: var(--teal); color: var(--navy);">SL</div>
+        <div>
+          <div class="author-name">Sophie Laurent</div>
+          <div class="author-role">Fondatrice, Bloom Studio</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-in">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">« Notre site a été repensé de A à Z et nos conversions ont augmenté de 140%. Ils ont compris notre univers dès le brief. »</p>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background: var(--coral); color: white;">MR</div>
+        <div>
+          <div class="author-name">Marc Renard</div>
+          <div class="author-role">CEO, Vivo Digital</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-in">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">« La direction artistique de notre campagne a dépassé toutes nos attentes. Professionnels, créatifs, et à l'écoute. Un rêve. »</p>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background: var(--yellow); color: var(--navy);">AC</div>
+        <div>
+          <div class="author-name">Amina Chouiref</div>
+          <div class="author-role">CMO, Terra Foods</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left">
+    <div class="section-label fade-in">On se parle ?</div>
+    <h2 class="fade-in">Votre projet<br>mérite mieux<br>que la moyenne</h2>
+    <p class="fade-in">Partagez-nous votre vision — aussi folle soit-elle. On adore les défis créatifs. Un premier échange, sans engagement, pour voir si le courant passe.</p>
+  </div>
+  <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Prénom & Nom</label>
+        <input type="text" id="name" placeholder="Sophie Martin" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="sophie@marque.fr" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="subject">Votre projet en quelques mots</label>
+      <input type="text" id="subject" placeholder="Refonte de mon identité visuelle...">
+    </div>
+    <div class="form-group">
+      <label for="message">Dites-nous tout</label>
+      <textarea id="message" placeholder="Contexte, objectifs, budget estimé, délai..."></textarea>
+    </div>
+    <button type="submit" class="btn-submit">Envoyer le message ✦</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">kre<span>8</span>if</div>
+  <p>© 2025 kre8if Studio — Paris, France</p>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">Behance</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">Mentions légales</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-submit');
+    btn.textContent = 'Message envoyé ! ✓';
+    btn.style.background = '#1ECFC4';
+    btn.style.borderColor = '#1ECFC4';
+    setTimeout(() => {
+      btn.textContent = 'Envoyer le message ✦';
+      btn.style.background = 'var(--coral)';
+      btn.style.borderColor = 'var(--coral)';
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+</body>
+</html>
